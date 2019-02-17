@@ -6,9 +6,29 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-item>
+    <ion-label fixed>Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="formValues.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Ultimo Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="formValues.lastName"></ion-input>
+  </ion-item>
+
+  <button ion-button (click)="setUser(formValues)">Enviar</button>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let user of usersList">
+      <ion-item>
+        <ion-label>{{ user.name }} {{ user.lastName }}</ion-label>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteUser(user.id)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

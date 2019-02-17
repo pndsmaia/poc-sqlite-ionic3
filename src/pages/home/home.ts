@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { UsersProvider } from '../../providers/users/users';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,43 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  formValues: Array<any> = [];
+  usersList;
 
+  constructor(
+    public navCtrl: NavController,
+    private usersProvider: UsersProvider
+  ) {
+
+  }
+  ionViewDidEnter() {
+    this.getAllUser();
+  }
+
+  setUser() {
+    this.usersProvider.insert(this.formValues);
+    this.getAllUser()
+  }
+
+  getAllUser() {
+    this.usersProvider.getMedicineAll()
+      .then((result: any[]) => {
+        console.log(result);
+
+        this.usersList = result;
+        console.log(this.usersList);
+      }).catch((error) => {
+        console.log(error);
+      })
+  }
+
+  deleteUser(id) {
+    this.usersProvider.remove(id).then(() => {
+      this.getAllUser();
+      console.log(this.usersList);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
 }
