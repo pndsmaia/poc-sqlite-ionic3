@@ -27,7 +27,7 @@ export class HomePage {
   }
 
   getAllUser() {
-    this.usersProvider.getMedicineAll()
+    this.usersProvider.getUsersAll()
       .then((result: any[]) => {
         console.log(result);
 

@@ -53,7 +53,7 @@ export class UsersProvider {
       });
   }
 
-  public getMedicine(id: number) {
+  public getUser(id: number) {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
         let sql = 'select * from users where id = ?';
@@ -78,7 +78,7 @@ export class UsersProvider {
       });
   }
 
-  public getMedicineAll() {
+  public getUsersAll() {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
         let sql = 'SELECT * from users';
