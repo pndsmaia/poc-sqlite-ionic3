@@ -26,7 +26,7 @@ export class UsersProvider {
   public update(user) {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
-        let sql = 'update medicines set name = ?, lastName = ? where id = ?';
+        let sql = 'update users set name = ?, lastName = ? where id = ?';
         let data = [user.name, user.lastName, user.id];
 
         return db.executeSql(sql, data)
